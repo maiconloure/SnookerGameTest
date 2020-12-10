@@ -1,0 +1,48 @@
+.table-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font: 500 1rem Inter;
+}
+
+.table-register form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+
+}
+
+.table-register .form-box {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-register .form-box label {
+  margin-right: 5px;
+}
+
+.table-register .form-box input, textarea {
+  font: 500 1rem Inter;
+  width: 200px;
+}
+
+.table-register .form-box input {
+  height: 1.2rem;
+}
+
+.table-register form button {
+  align-self: center;
+  font: 600 1.4rem Inter;
+  padding: 5px 20px;
+  margin-top: 20px;
+}
+
+.table-register-link {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}

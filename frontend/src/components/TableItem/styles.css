@@ -1,0 +1,11 @@
+table input {
+  width: 10%;
+  font: 500 1rem Inter;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.edit-btn {
+  font: 500 1rem Inter;
+}
