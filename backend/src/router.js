@@ -12,12 +12,15 @@ class Router {
   }
 
   get(url) {
+    if (url === "/") {
+      this.res.end(JSON.stringify({ message: "type /tables or /teams" }));
+    }
     if (url === "/tables") {
       this.TablesControllers.index(this.req, this.res);
     }
 
     if (url === "/teams") {
-      this.TeamsController.index(this.req, this.res);
+      this.TeamsControllers.index(this.req, this.res);
     }
   }
 
@@ -27,7 +30,13 @@ class Router {
     }
 
     if (url === "/create_team") {
-      this.TeamsController.create(this.req, this.res);
+      this.TeamsControllers.create(this.req, this.res);
+    }
+  }
+
+  put(url) {
+    if (url.split("?")[0] === "/team") {
+      this.TeamsControllers.update(this.req, this.res);
     }
   }
 }

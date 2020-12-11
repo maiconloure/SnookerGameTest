@@ -4,16 +4,13 @@ const { db } = require("../database/connection");
 class TablesController {
   async index(request, response) {
     const tables = await db("tables");
-    console.log(tables);
-    return response.end(tables);
+    return response.end(JSON.stringify(tables));
   }
 
   async create(request, response) {
     try {
-      // const data = req.on("data", (chunk) => {
-      //   return chunk;
-      // });
-      const { name, prize, win, rules } = request.body;
+      const data = request.on("data", (chunk) => chunk);
+      const { name, prize, win, rules } = data;
       const tables = await db("tables").count("* as total");
       const { total } = tables[0];
 
@@ -25,17 +22,21 @@ class TablesController {
           rules,
         });
 
-        return response
-          .status(201)
-          .send({ message: "table successfully created" });
+        return response.end(
+          JSON.stringify({ message: "table successfully created" })
+        );
       } else {
-        return response.status(400).send({ message: "table already exists" });
+        return response.end(
+          JSON.stringify({ message: "table already exists" })
+        );
       }
     } catch (err) {
-      console.log(err);
-      return response.status(400).send({
-        erro: "Unexpected error while creating new game table!",
-      });
+      console.error(err);
+      return response.end(
+        JSON.stringify({
+          erro: "Unexpected error while creating new game table!",
+        })
+      );
     }
   }
 }
