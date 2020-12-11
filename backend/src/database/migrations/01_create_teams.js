@@ -7,13 +7,6 @@ async function up(knex) {
     table.string("player1").notNullable();
     table.string("player2").notNullable();
     table.integer("points").notNullable();
-    table
-      .integer("team_id")
-      .notNullable()
-      .references("id")
-      .inTable("tables")
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
   });
 }
 

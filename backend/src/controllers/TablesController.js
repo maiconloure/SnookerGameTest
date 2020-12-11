@@ -9,27 +9,34 @@ class TablesController {
 
   async create(request, response) {
     try {
-      const data = request.on("data", (chunk) => chunk);
-      const { name, prize, win, rules } = data;
-      const tables = await db("tables").count("* as total");
-      const { total } = tables[0];
+      let data = "";
+      request.on("data", (chunk) => {
+        data = chunk;
+      });
 
-      if (total < process.env.MAX_TABLES) {
-        await db("tables").insert({
-          name,
-          prize,
-          win,
-          rules,
-        });
+      await request.on("end", async () => {
+        data = JSON.parse(data);
+        const { name, prize, win, rules } = data;
+        const tables = await db("tables").count("* as total");
+        const { total } = tables[0];
 
-        return response.end(
-          JSON.stringify({ message: "table successfully created" })
-        );
-      } else {
-        return response.end(
-          JSON.stringify({ message: "table already exists" })
-        );
-      }
+        if (total < process.env.MAX_TABLES) {
+          await db("tables").insert({
+            name,
+            prize,
+            win,
+            rules,
+          });
+
+          return response.end(
+            JSON.stringify({ message: "table successfully created" })
+          );
+        } else {
+          return response.end(
+            JSON.stringify({ message: "table already exists" })
+          );
+        }
+      });
     } catch (err) {
       console.error(err);
       return response.end(
