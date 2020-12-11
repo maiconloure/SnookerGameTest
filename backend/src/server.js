@@ -5,23 +5,17 @@ const Router = require("./router");
 
 http
   .createServer((req, res) => {
-    const { headers, method, url } = req;
-
+    const { method } = req;
     res.writeHead(200, {
       "Access-Control-Allow-Origin": "*",
     });
 
     const router = new Router(req, res, method);
-
     if (method === "GET") {
       router.get(url);
-    }
-
-    if (method === "POST") {
+    } else if (method === "POST") {
       router.post(url);
-    }
-
-    if (method === "PUT") {
+    } else if (method === "PUT") {
       router.put(url);
     }
   })

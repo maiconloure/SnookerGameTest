@@ -11,31 +11,26 @@ class Router {
     this.method = method;
   }
 
-  get(url) {
-    if (url === "/") {
-      this.res.end(JSON.stringify({ message: "type /tables or /teams" }));
-    }
-    if (url === "/tables") {
+  get() {
+    if (this.req.url === "/tables") {
       this.TablesControllers.index(this.req, this.res);
     }
-
-    if (url === "/teams") {
+    if (this.req.url === "/teams") {
       this.TeamsControllers.index(this.req, this.res);
     }
   }
 
-  post(url) {
-    if (url === "/create_table") {
+  post() {
+    if (this.req.url === "/create_table") {
       this.TablesControllers.create(this.req, this.res);
     }
-
-    if (url === "/create_team") {
+    if (this.req.url === "/create_team") {
       this.TeamsControllers.create(this.req, this.res);
     }
   }
 
-  put(url) {
-    if (url.split("?")[0] === "/team") {
+  put() {
+    if (this.req.url.split("?")[0] === "/team") {
       this.TeamsControllers.update(this.req, this.res);
     }
   }
