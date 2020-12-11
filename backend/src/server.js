@@ -12,11 +12,11 @@ http
 
     const router = new Router(req, res, method);
     if (method === "GET") {
-      router.get(url);
+      router.get();
     } else if (method === "POST") {
-      router.post(url);
+      router.post();
     } else if (method === "PUT") {
-      router.put(url);
+      router.put();
     }
   })
   .listen(5000, () => console.log("Server is running"));

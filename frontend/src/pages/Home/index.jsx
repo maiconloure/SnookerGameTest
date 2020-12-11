@@ -4,6 +4,7 @@ import MainTable from "../../components/Table";
 import "./styles.css";
 
 function Home() {
+  const getTable = () => {};
   return (
     <div className="home">
       <h1>Sistema - Jogo de Sinuca</h1>
