@@ -4,12 +4,15 @@ const { db } = require("../database/connection");
 class TablesController {
   async index(request, response) {
     const tables = await db("tables");
-
-    return response.send(tables);
+    console.log(tables);
+    return response.end(tables);
   }
 
   async create(request, response) {
     try {
+      // const data = req.on("data", (chunk) => {
+      //   return chunk;
+      // });
       const { name, prize, win, rules } = request.body;
       const tables = await db("tables").count("* as total");
       const { total } = tables[0];
