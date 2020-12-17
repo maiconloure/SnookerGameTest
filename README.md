@@ -6,7 +6,7 @@
 
 Configuração
 ```sh
-> git clone git@github.com:maiconloure/Portfolio.git
+> git clone git@github.com:maiconloure/SnookerGameTest.git
 ```
 ## Quick
 
